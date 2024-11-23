@@ -20,4 +20,12 @@ class FourPercentRule {
     calculateSavingNeed(): number {
         return this.calculateSavingGoal() - this.calculator.currentSavings;
     }
+
+    calculateSavingNeedPerYear(): number {
+        return this.calculateSavingNeed() / this.calculator.retirementPeriod;
+    }
+
+    calculateSavingNeedPerMonth(): number {
+        return this.calculateSavingNeedPerYear() / 12;
+    }
 }

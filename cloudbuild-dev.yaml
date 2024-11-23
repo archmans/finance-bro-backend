@@ -9,3 +9,6 @@ steps:
 
 images:
   - us-central1-docker.pkg.dev/c242-ps128-test-442602/backend-repo/backend-app
+
+options:
+  logging: NONE

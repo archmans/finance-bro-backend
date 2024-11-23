@@ -5,6 +5,11 @@
   "repository": "https://github.com/C242-PS128/backend-service.git",
   "author": "Muhamad Salman Hakim Alfarisi <13521010@std.stei.itb.ac.id>",
   "license": "MIT",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts",
+    "build": "tsc"
+  },
   "devDependencies": {
     "@types/node": "^22.9.0",
     "nodemon": "^3.1.7",

@@ -1,40 +1,18 @@
-import express, { Request, Response } from 'express';
+import dotenv from 'dotenv';
+import express from 'express';
+import bodyParser from 'body-parser';
+import router from './routes';
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-interface Person {
-    id: number;
-    name: string;
-    age: number;
-}
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-const myList: Person[] = [
-    {
-        id: 1,
-        name: 'John Doe',
-        age: 25
-    },
-    {
-        id: 2,
-        name: 'Jane Doe',
-        age: 30
-    }
-];
-
-app.get('/', (req: Request, res: Response) => {
-    let htmlContent = '<h1>My List</h1><ul>';
-    
-    myList.forEach(item => {
-        htmlContent += `<li>${item.name}, Age: ${item.age}</li>`;
-    });
-
-    htmlContent += '</ul>';
-
-    // Send the HTML as the response
-    res.send(htmlContent);
-});
+app.use('/', router);
 
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`⚡️[server]: Server is running on http://localhost:${PORT}`);
 });

@@ -1,6 +1,6 @@
 import Calculator from "./calculator";
 
-class FourPercentRule {
+export default class FourPercentRule {
     calculator: Calculator;
     percent: number;
 
@@ -8,9 +8,10 @@ class FourPercentRule {
         this.calculator = calculator;
         this.percent = percent;
     }
+    // percent will replaced by the value of inflation model
 
     calculateNeedsPerYear(): number {
-        return this.calculator.currentSavings * this.percent;
+        return this.calculator.monthlylivingcost * 12 / this.percent;
     }
 
     calculateSavingGoal(): number {
@@ -22,7 +23,7 @@ class FourPercentRule {
     }
 
     calculateSavingNeedPerYear(): number {
-        return this.calculateSavingNeed() / this.calculator.retirementPeriod;
+        return this.calculateSavingNeed() / (this.calculator.retirementAge - this.calculator.currentAge);
     }
 
     calculateSavingNeedPerMonth(): number {

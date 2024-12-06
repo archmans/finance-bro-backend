@@ -11,7 +11,7 @@ export default class FourPercentRule {
     // percent will replaced by the value of inflation model
 
     calculateNeedsPerYear(): number {
-        return this.calculator.monthlylivingcost * 12 / this.percent;
+        return this.calculator.monthlylivingcost * 12 * (1 + this.percent);
     }
 
     calculateSavingGoal(): number {

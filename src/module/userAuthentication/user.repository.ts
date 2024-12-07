@@ -1,6 +1,6 @@
-import firestore from '../../config/firestore';
+import database from '../../config/database';
 
-const userCollection = firestore.collection('users');
+const userCollection = database.collection('users');
 
 export const createUser = async (userData: { email: string; password: string }) => {
     const userDoc = userCollection.doc();

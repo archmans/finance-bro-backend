@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import admin from '../config/auth';
+import jwt from 'jsonwebtoken';
 
 export const authenticateToken = async (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers['authorization'];
@@ -12,12 +12,13 @@ export const authenticateToken = async (req: Request, res: Response, next: NextF
     }
 
     try {
-        const decodedToken = await admin.auth().verifyIdToken(token);
-        console.log("decodedToken: ", decodedToken);
-        req.body.uid = decodedToken.uid;
-        console.log("req.body.uid: ", req.body.uid);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || '');
+        console.log("decoded: ", decoded);
+        req.body.uid = decoded;
         next();
-    } catch (error) {
+    }
+    catch (error: any) {
+        console.log("error: ", error);
         return res.sendStatus(403);
     }
 }

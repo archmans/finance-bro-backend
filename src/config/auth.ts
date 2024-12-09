@@ -3,8 +3,8 @@ import path from 'path';
 
 const serviceAccount = path.resolve('./firebaseKey.json');
 
-admin.initializeApp({
+const auth = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
 });
 
-export default admin;
+export default auth;

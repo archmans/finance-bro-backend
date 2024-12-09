@@ -6,6 +6,3 @@ node_modules/
 .vscode/
 .idea/
 .DS_Store
-.env
-serviceKey.json
-firebaseKey.json

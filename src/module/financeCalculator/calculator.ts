@@ -12,5 +12,4 @@ export default class Calculator {
         this.currentSavings = currentSavings;
         this.monthlylivingcost = monthlylivingcost;
     }
-
 }

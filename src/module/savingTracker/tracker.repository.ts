@@ -16,7 +16,6 @@ export const saveProfileToFirestore = async (uid: string, name: string, age: num
     }), { merge: true };
 };
 
-
 export const getProfileFromFirestore = async (uid: string): Promise<{ name: string; age: number; retireAge: number; retirePeriod: number; monthlyExpenses: number; }> => {
     const userRef = database.collection("users").doc(uid);
     const userDoc = await userRef.get();
@@ -24,9 +23,7 @@ export const getProfileFromFirestore = async (uid: string): Promise<{ name: stri
     if (!data) {
         throw new Error('User profile data is undefined');
     }
-
     const { name, age, retireAge, retirePeriod, monthlyExpenses } = data;
-
     return {
         name,
         age,
@@ -35,7 +32,6 @@ export const getProfileFromFirestore = async (uid: string): Promise<{ name: stri
         monthlyExpenses,
     };
 };
-
 
 export const updateProfileInFirestore = async (uid: string, name: string, age: number, retireAge: number, retirePeriod: number, monthlyExpenses: number) => {
     const userRef: DocumentReference = database.collection("users").doc(uid);

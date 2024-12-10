@@ -8,7 +8,6 @@ export default class FourPercentRule {
         this.calculator = calculator;
         this.percent = percent;
     }
-    // percent will replaced by the value of inflation model
 
     calculateNeedsPerYear(): number {
         return this.calculator.monthlylivingcost * 12 * (1 + this.percent);

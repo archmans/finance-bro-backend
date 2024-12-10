@@ -4,10 +4,8 @@ import {
     updateProfileInFirestore 
 } from "./tracker.repository";
 
-
 export const createProfileUser = async (body: { uid: string, name: string, age: number, retireAge: number, retirePeriod: number, monthlyExpenses: number }) => {
     const { uid, name, age, retireAge, retirePeriod, monthlyExpenses } = body;
-
     try {
         const newProfile = await saveProfileToFirestore(uid, name, age, retireAge, retirePeriod, monthlyExpenses);
         return { status: 201, data: { message: 'Profile created', profile: newProfile } };
@@ -28,7 +26,6 @@ export const getProfileUser = async (body: { uid: string }) => {
 
 export const updateProfileUser = async (body: { uid: string, name: string, age: number, retireAge: number, retirePeriod: number, monthlyExpenses: number }) => {
     const { uid, name, age, retireAge, retirePeriod, monthlyExpenses } = body;
-
     try {
         const updatedProfile = await updateProfileInFirestore(uid, name, age, retireAge, retirePeriod, monthlyExpenses);
         return { status: 200, data: { message: 'Profile updated', profile: updatedProfile } };
@@ -36,4 +33,3 @@ export const updateProfileUser = async (body: { uid: string, name: string, age: 
         throw new Error('Error updating profile: ' + error.message);
     }
 };
-

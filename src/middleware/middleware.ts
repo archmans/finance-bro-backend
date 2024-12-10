@@ -3,9 +3,7 @@ import jwt from 'jsonwebtoken';
 
 export const authenticateToken = async (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers['authorization'];
-    console.log("authHeader: ", authHeader);
     const token = authHeader && authHeader.split(' ')[1];
-    console.log("token: ", token);
 
     if (!token) {
         return res.sendStatus(401);
@@ -13,8 +11,8 @@ export const authenticateToken = async (req: Request, res: Response, next: NextF
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET || '');
-        console.log("decoded: ", decoded);
-        req.body.uid = decoded;
+        const { uid } = decoded as { uid: string, email: string };
+        req.body = { uid, ...req.body };
         next();
     }
     catch (error: any) {

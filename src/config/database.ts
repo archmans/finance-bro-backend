@@ -1,11 +1,12 @@
 import { Firestore } from '@google-cloud/firestore';
 import path from 'path';
+import environment from '../utils/environment';
 const serviceKey = path.resolve('./serviceKey.json');
 
 const database = new Firestore({
-    projectId: 'c242-ps128-test-442602',
+    projectId: environment.PROJECT_ID,
     keyFilename: serviceKey,
-    databaseId: 'capstone-bangkit',
+    databaseId: environment.DATABASE_ID,
 });
 
 export default database;

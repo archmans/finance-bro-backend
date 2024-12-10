@@ -6,7 +6,6 @@ import environment from '../../utils/environment';
 
 export const loginOrRegisterUser = async (body: { email: string }) => {
     const { email } = body;
-
     try {
         const user: UserRecord = await auth.auth().getUserByEmail(email);
         const token = jwt.sign({ uid: user.uid }, environment.JWT_SECRET || '');

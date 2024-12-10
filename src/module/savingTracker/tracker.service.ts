@@ -4,6 +4,7 @@ import {
     updateProfileInFirestore 
 } from "./tracker.repository";
 
+
 export const createProfileUser = async (body: { uid: string, name: string, age: number, retireAge: number, retirePeriod: number, monthlyExpenses: number }) => {
     const { uid, name, age, retireAge, retirePeriod, monthlyExpenses } = body;
 

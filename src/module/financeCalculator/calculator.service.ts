@@ -18,12 +18,10 @@ export const calculate = async (body: { uid: string }) => {
             currentSavings,
             userData.monthlyExpenses
         );
-        console.log(userData.age, userData.retireAge, userData.retirePeriod, currentSavings, userData.monthlyExpenses);
         const inflationRate = await getInflationRate();
         if (!inflationRate) {
             throw new Error('Inflation rate not found');
         }
-        console.log("Inflation rate: ", inflationRate);
         const fourPercentRule = new FourPercentRule(calculator, inflationRate);
         return {
             status: 200,

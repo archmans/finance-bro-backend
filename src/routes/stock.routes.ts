@@ -3,6 +3,6 @@ import { predictStock } from '../module/stockPrediction/stock.controller';
 
 const router = Router();
 
-router.get('/', predictStock);
+router.post('/', predictStock);
 
 export default router;

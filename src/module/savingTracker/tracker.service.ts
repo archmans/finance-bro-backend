@@ -6,6 +6,7 @@ import {
     getAllNames,
     addSavings,
     updateSavings,
+    updateSavingsInvest,
     deleteSavings
 } from "./tracker.repository";
 
@@ -83,6 +84,17 @@ export const updateSavingsUser = async (body: { uid: string, name: string, amoun
         throw new Error('Error updating savings: ' + error.message);
     }
 };
+
+export const updateSavingsInvestUser = async (body: { uid: string, name: string, amount: number, type: string }) => {
+    const { uid, name, amount, type } = body;
+    try {
+        await updateSavingsInvest(uid, name, amount, type);
+        return { status: 200, data: { message: 'Savings invest updated' } };
+    }
+    catch (error: any) {
+        throw new Error('Error investing savings: ' + error.message);
+    }
+}
 
 export const deleteSavingsUser = async (body: { uid: string, name: string }) => {
     const { uid, name } = body;

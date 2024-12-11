@@ -8,7 +8,6 @@ export const saveUserToFirestore = async (uid: string, userData: any) => {
         retireAge: null,
         retirePeriod: null,
         monthlyExpense: null,
-        target: null,
     };
     const finalUserData = { ...defaultUserData, ...userData };
     const userRef: DocumentReference = database.collection('users').doc(uid);

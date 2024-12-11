@@ -89,7 +89,7 @@ PUT ~ http://localhost:8080/tracker/savings
 {
     "name": "Saham2",
     "amount": 200000,
-    "type": "investment"
+    "type": "saving"
 }
 ```
 

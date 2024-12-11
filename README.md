@@ -103,3 +103,14 @@ DELETE ~ http://localhost:8080/savings
 ### CALCULATOR
 GET ~ http://localhost:8080/calculator
 - Header : Authorization Bearer `your-token`
+
+### STOCK
+POST ~ http://localhost:8080/predict
+- Header : Authorization Bearer `your
+```
+{
+    "stock_code":"BBCA",
+    "start_date":"2024-12-11",
+    "end_date":"2024-12-15"
+}
+```

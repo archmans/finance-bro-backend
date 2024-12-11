@@ -8,6 +8,7 @@ Create a `.env` file in the root directory of the project and add the following 
     JWT_SECRET='secretcode'
     PROJECT_ID='c242-ps128-test-442602'
     DATABASE_ID='capstone-bangkit'
+    ML_API_URL='https://financebro-ml-958019176719.us-central1.run.app/predict'
 
 Fill the service account key file in the `serviceKey.json` file and firebase key file in the `firebaseKey.json` file.
 
@@ -15,7 +16,7 @@ Fill the service account key file in the `serviceKey.json` file and firebase key
 
 Follow these steps to run the backend service using Yarn:
 
-    npm install yarn
+    npm install -g yarn
     yarn install
     yarn build
     yarn start
@@ -54,7 +55,7 @@ GET ~ http://localhost:8080/tracker
 - Header : Authorization Bearer `your-token`
 
 UPDATE ~ http://localhost:8080/tracker
-- Header : Authorization Bearer `your
+- Header : Authorization Bearer `your-token`
 ```
 {
     "name" : "salman",
@@ -66,13 +67,13 @@ UPDATE ~ http://localhost:8080/tracker
 ```
 
 ### SAVINGS
-GET ~ http://localhost:8080/savings
+GET ~ http://localhost:8080/tracker/savings
 - Header : Authorization Bearer `your-token`
 
-GET ~ http://localhost:8080/savingsname
+GET ~ http://localhost:8080/tracker/savingsname
 - Header : Authorization Bearer `your-token`
 
-POST ~ http://localhost:8080/savings
+POST ~ http://localhost:8080/tracker/savings
 - Header : Authorization Bearer `your-token`
 ```
 {
@@ -82,7 +83,7 @@ POST ~ http://localhost:8080/savings
 }
 ```
 
-PUT ~ http://localhost:8080/savings
+PUT ~ http://localhost:8080/tracker/savings
 - Header : Authorization Bearer `your-token`
 ```
 {
@@ -92,8 +93,18 @@ PUT ~ http://localhost:8080/savings
 }
 ```
 
-DELETE ~ http://localhost:8080/savings
-- Header : Authorization Bearer `your
+PUT ~ http://localhost:8080/tracker/savingsinvest
+- Header : Authorization Bearer `your-token`
+```
+{
+    "name": "Saham2",
+    "amount": 10000,
+    "type": "investment"
+}
+```
+
+DELETE ~ http://localhost:8080/tracker/savings
+- Header : Authorization Bearer `your-token`
 ```
 {
     "name": "Saham2"
@@ -106,7 +117,7 @@ GET ~ http://localhost:8080/calculator
 
 ### STOCK
 POST ~ http://localhost:8080/predict
-- Header : Authorization Bearer `your
+- Header : Authorization Bearer `your-token`
 ```
 {
     "stock_code":"BBCA",

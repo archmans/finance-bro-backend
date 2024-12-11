@@ -7,6 +7,7 @@ import {
     getAllNamesUser,
     addSavingsUser,
     updateSavingsUser,
+    updateSavingsInvestUser,
     deleteSavingsUser
 } from "./tracker.service";
 
@@ -67,6 +68,15 @@ export const addSavings = async (req: Request, res: Response) => {
 export const updateSavings = async (req: Request, res: Response) => {
     try {
         const result = await updateSavingsUser(req.body);
+        res.status(result.status).json(result.data);
+    } catch (error: any) {
+        res.status(500).json({ message: "Internal server error", error: error.message });
+    }
+};
+
+export const updateSavingsInvest = async (req: Request, res: Response) => {
+    try {
+        const result = await updateSavingsInvestUser(req.body);
         res.status(result.status).json(result.data);
     } catch (error: any) {
         res.status(500).json({ message: "Internal server error", error: error.message });

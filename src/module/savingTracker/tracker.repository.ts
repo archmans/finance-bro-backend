@@ -124,6 +124,41 @@ export const updateSavings = async (uid: string, name: string, amount: number, t
     return { name, amount, type };
 };
 
+export const updateSavingsInvest = async (uid: string, name: string, amount: number, type: string) => {
+
+    const rekeningsCollectionRef = database.collection('users').doc(uid).collection('rekenings');
+    const snapshot = await rekeningsCollectionRef.get();
+
+    let updated = false;
+    let currentAmount = 0;
+
+    snapshot.forEach(doc => {
+        if (doc.get('name') === name) {
+            currentAmount = doc.get('amount') || 0;
+            updated = true;
+        }
+    });
+
+    if (!updated) {
+        throw new Error('Name not found');
+    }
+
+    const newAmount = amount;
+    if (newAmount < 0) {
+        throw new Error('Insufficient funds');
+    }
+
+    const rekeningDoc = snapshot.docs.find(doc => doc.get('name') === name);
+    if (rekeningDoc) {
+        await rekeningDoc.ref.update({
+            amount: newAmount,
+            type,
+        });
+    }
+
+    return { name, amount, type };
+}
+
 export const deleteSavings = async (uid: string, name: string) => {
     const rekeningsCollectionRef = database.collection('users').doc(uid).collection('rekenings');
     const snapshot = await rekeningsCollectionRef.get();

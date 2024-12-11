@@ -31,6 +31,7 @@ export const calculate = async (body: { uid: string }) => {
         const savingPeriod = fourPercentRule.calculateSavingPeriod();
         return {
             status: 200,
+            currentSavings: currentSavings,
             savingNeedPerMonth: savingNeedPerMonth,
             savingGoal: savingGoal,
             savingPeriod: savingPeriod

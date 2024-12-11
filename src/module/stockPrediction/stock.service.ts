@@ -9,7 +9,6 @@ export const predictStockPrice = async (body: { stock_code: string, start_date: 
             start_date,
             end_date
         });
-        console.log(response.data);
         const data = await response.data;
         return { status: 200, data };
     } catch (error: any) {

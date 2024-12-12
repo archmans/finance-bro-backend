@@ -211,6 +211,16 @@ import { authenticateToken } from '../middleware/middleware';
  *                   type: integer
  *                   description: HTTP status code.
  *                   example: 200
+ *                 name:
+ *                   type: string
+ *                   description: The name of the user.
+ *                   nullable: true
+ *                   example: null
+ *                 currentSavings:
+ *                   type: number
+ *                   nullable: true
+ *                   description: The current savings of the user.
+ *                   example: null
  *                 savingNeedPerMonth:
  *                   type: number
  *                   nullable: true
@@ -220,6 +230,11 @@ import { authenticateToken } from '../middleware/middleware';
  *                   type: number
  *                   nullable: true
  *                   description: Total saving goal amount. Can be null if not applicable.
+ *                   example: null
+ *                 savingPeriod:
+ *                   type: number
+ *                   nullable: true
+ *                   description: The period of saving. Can be null if not applicable.
  *                   example: null
  *       500:
  *         description: Internal server error

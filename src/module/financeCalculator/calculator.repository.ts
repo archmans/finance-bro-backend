@@ -8,8 +8,8 @@ export const getUserData = async (uid: string) => {
     if (!data) {
         throw new Error('User data is undefined');
     }
-    const { age, retireAge, retirePeriod, monthlyExpenses } = data;
-    return { age, retireAge, retirePeriod, monthlyExpenses };
+    const { age, retireAge, retirePeriod, monthlyExpenses, name } = data;
+    return { age, retireAge, retirePeriod, monthlyExpenses, name };
 };
 
 export const getTotalSavings = async (uid: string) => {

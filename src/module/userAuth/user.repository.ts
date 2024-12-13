@@ -25,7 +25,26 @@ export const saveUserToFirestore = async (uid: string, userData: any) => {
     });
 };
 
+const deleteCollection = async (collectionPath: string) => {
+    const collectionRef = database.collection(collectionPath);
+    const snapshot = await collectionRef.get();
+
+    const batch = database.batch();
+    snapshot.forEach((doc) => {
+        batch.delete(doc.ref);
+    });
+
+    await batch.commit();
+};
+
 export const deleteUserFromFirestore = async (uid: string) => {
-    const userRef: DocumentReference = database.collection('users').doc(uid);
-    await userRef.delete();
-}
+    const userRef = database.collection('users').doc(uid);
+
+    try {
+        await deleteCollection(`users/${uid}/rekenings`);
+
+        await userRef.delete();
+    } catch (error: any) {
+        throw new Error('Error deleting Firestore user and subcollections: ' + error.message);
+    }
+};

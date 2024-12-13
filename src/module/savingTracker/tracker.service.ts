@@ -7,7 +7,9 @@ import {
     addSavings,
     updateSavings,
     updateSavingsInvest,
-    deleteSavings
+    deleteSavings,
+    getNamesByType,
+    getAmountByName
 } from "./tracker.repository";
 
 
@@ -62,6 +64,31 @@ export const getAllNamesUser = async (body: { uid: string }) => {
         throw new Error('Error getting names: ' + error.message);
     }
 };
+
+export const getNamesByTypeUser = async (body: { uid: string }, params: { type: string }) => {
+    const { uid } = body;
+    const { type } = params;
+    console.log('type', type);
+    try {
+        const names = await getNamesByType(uid, type);
+        return { status: 200, data: { names } };
+    }
+    catch (error: any) {
+        throw new Error('Error getting names by type: ' + error.message);
+    }
+}
+
+export const getAmountByNameUser = async (body: { uid: string }, params: { name: string }) => {
+    const { name } = params;
+    const { uid } = body;
+    try {
+        const amount = await getAmountByName(uid, name);
+        return { status: 200, data: { amount } };
+    }
+    catch (error: any) {
+        throw new Error('Error getting amount by name: ' + error.message);
+    }
+}
 
 export const addSavingsUser = async (body: { uid: string, name: string, amount: number, type: string }) => {
     const { uid, name, amount, type } = body;

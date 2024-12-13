@@ -5,6 +5,8 @@ import {
     updateProfileUser,
     getAllSavingsUser,
     getAllNamesUser,
+    getNamesByTypeUser,
+    getAmountByNameUser,
     addSavingsUser,
     updateSavingsUser,
     updateSavingsInvestUser,
@@ -55,6 +57,24 @@ export const getAllNames = async (req: Request, res: Response) => {
         res.status(500).json({ message: "Internal server error", error: error.message });
     }
 };
+
+export const getNamesByType = async (req: Request, res: Response) => {
+    try {
+        const result = await getNamesByTypeUser(req.body, { type: req.params.type });
+        res.status(result.status).json(result.data);
+    } catch (error: any) {
+        res.status(500).json({ message: "Internal server error", error: error.message });
+    }
+}
+
+export const getAmountByName = async (req: Request, res: Response) => {
+    try {
+        const result = await getAmountByNameUser(req.body, { name: req.params.name });
+        res.status(result.status).json(result.data);
+    } catch (error: any) {
+        res.status(500).json({ message: "Internal server error", error: error.message });
+    }
+}
 
 export const addSavings = async (req: Request, res: Response) => {
     try {

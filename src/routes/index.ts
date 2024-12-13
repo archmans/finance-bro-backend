@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import userRoutes from './user.routes';
 import userOroutes from './userO.routes';
 import trackerRoutes from './tracker.routes';
 import calculateRoutes from './calculator.routes';
@@ -94,6 +93,9 @@ import { authenticateToken } from '../middleware/middleware';
  *                 retirePeriod:
  *                   type: number
  *                   example: 20
+ *                 monthlyExpenses:
+ *                   type: number
+ *                   example: 2000000
  *       500:
  *         description: Internal server error
  *   post:
@@ -242,7 +244,6 @@ import { authenticateToken } from '../middleware/middleware';
 
 const router = Router();
 
-router.use('/auth', userRoutes);
 router.use('/firebase', userOroutes);
 router.use('/tracker', authenticateToken, trackerRoutes);
 router.use('/calculator', authenticateToken, calculateRoutes);

@@ -1,4 +1,3 @@
-import { parse } from "path";
 import database from "../config/database";
 
 export const getInflationRate = async (startYear: number, endYear: number) => {

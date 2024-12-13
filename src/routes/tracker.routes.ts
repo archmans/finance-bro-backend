@@ -5,6 +5,8 @@ import {
     updateProfile, 
     getAllSavings,
     getAllNames,
+    getNamesByType,
+    getAmountByName,
     addSavings,
     updateSavings,
     updateSavingsInvest,
@@ -163,6 +165,64 @@ import {
 
 /**
  * @swagger
+ * /tracker/savingsname/{type}:
+ *   get:
+ *     summary: Get all saving names by type
+ *     tags: [SavingTracker]
+ *     parameters:
+ *       - in: path
+ *         name: type
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Type of saving
+ *     responses:
+ *       200:
+ *         description: List of saving names retrieved successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 names:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                   example: ["Tabungan"]
+ *       401:
+ *         description: Unauthorized access.
+ */
+
+/**
+ * @swagger
+ * /savingsamount/{name}:
+ *   get:
+ *     summary: Get savings amount by name
+ *     tags: [SavingTracker]
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Name of the savings
+ *     responses:
+ *       200:
+ *         description: Savings amount retrieved successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 amount:
+ *                   type: number
+ *                   example: 5000
+ *       401:
+ *         description: Unauthorized access.
+ */
+
+/**
+ * @swagger
  * /tracker/savingsinvest:
  *  put:
  *     summary: Update an existing saving record
@@ -207,6 +267,8 @@ router.get('/', getProfile);
 router.put('/', updateProfile);
 router.get('/savings', getAllSavings);
 router.get('/savingsname', getAllNames);
+router.get('/savingsname/:type', getNamesByType);
+router.get('/savingsamount/:name', getAmountByName);
 router.post('/savings', addSavings);
 router.put('/savings', updateSavings);
 router.put('/savingsinvest', updateSavingsInvest);

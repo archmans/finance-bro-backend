@@ -70,6 +70,32 @@ export const getAllNames = async (uid: string) => {
     return names;
 }
 
+export const getNamesByType = async (uid: string, type: string) => {
+    const rekeningsCollectionRef = database.collection('users').doc(uid).collection('rekenings');
+    const snapshot = await rekeningsCollectionRef.get();
+
+    const names: string[] = [];
+    snapshot.forEach(doc => {
+        if (doc.get('type') === type) {
+            names.push(doc.get('name'));
+        }
+    });
+    return names;
+}
+
+export const getAmountByName = async (uid: string, name: string) => {
+    const rekeningsCollectionRef = database.collection('users').doc(uid).collection('rekenings');
+    const snapshot = await rekeningsCollectionRef.get();
+
+    let amount = 0;
+    snapshot.forEach(doc => {
+        if (doc.get('name') === name) {
+            amount = doc.get('amount');
+        }
+    });
+    return amount;
+}
+
 export const addSavings = async (uid: string, name: string, amount: number, type: string) => {
     const rekeningsCollectionRef = database.collection('users').doc(uid).collection('rekenings');
     const snapshot = await rekeningsCollectionRef.get();

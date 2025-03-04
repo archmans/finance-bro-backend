@@ -4,11 +4,11 @@
 
 Create a `.env` file in the root directory of the project and add the following environment variables:
 
-    PORT=8080
-    JWT_SECRET='secretcode'
-    PROJECT_ID='c242-ps128-test-442602'
-    DATABASE_ID='capstone-bangkit'
-    ML_API_URL='https://financebro-ml-958019176719.us-central1.run.app/predict'
+    PORT=
+    JWT_SECRET=
+    PROJECT_ID=
+    DATABASE_ID=
+    ML_API_URL=
 
 Fill the service account key file in the `serviceKey.json` file and firebase key file in the `firebaseKey.json` file.
 
